@@ -1,0 +1,142 @@
+New round start.
+
+Player 1 hand: KING of SPADES
+KING of HEARTS
+JACK of DIAMONDS
+
+Player 1 hand score: 10
+
+Player 1's lives: 2
+
+Player 2 hand: KING of CLUBS
+JACK of CLUBS
+TEN of CLUBS
+
+Player 2 hand score: 30
+
+Player 2's lives: 3
+
+Player 3 hand: QUEEN of HEARTS
+QUEEN of SPADES
+FIVE of SPADES
+
+Player 3 hand score: 15
+
+Player 3's lives: 3
+
+New round start.
+
+Player 1 hand: QUEEN of DIAMONDS
+KING of DIAMONDS
+SIX of DIAMONDS
+
+Player 1 hand score: 26
+
+Player 1's lives: 2
+
+Player 2 hand: QUEEN of DIAMONDS
+QUEEN of CLUBS
+JACK of SPADES
+
+Player 2 hand score: 10
+
+Player 2's lives: 2
+
+Player 3 hand: TEN of SPADES
+TEN of HEARTS
+NINE of SPADES
+
+Player 3 hand score: 19
+
+Player 3's lives: 3
+
+New round start.
+
+Player 1 hand: QUEEN of DIAMONDS
+JACK of HEARTS
+TEN of CLUBS
+
+Player 1 hand score: 10
+
+Player 1's lives: 1
+
+Player 2 hand: KING of SPADES
+KING of SPADES
+NINE of SPADES
+
+Player 2 hand score: 29
+
+Player 2's lives: 2
+
+Player 3 hand: KING of HEARTS
+QUEEN of CLUBS
+EIGHT of CLUBS
+
+Player 3 hand score: 18
+
+Player 3's lives: 3
+
+New round start.
+
+Player 1 hand: KING of DIAMONDS
+KING of HEARTS
+SIX of SPADES
+
+Player 1 hand score: 10
+
+Player 1's lives: 1
+
+Player 2 hand: KING of DIAMONDS
+KING of DIAMONDS
+FIVE of DIAMONDS
+
+Player 2 hand score: 25
+
+Player 2's lives: 3
+
+New round start.
+
+Player 1 hand: QUEEN of CLUBS
+JACK of CLUBS
+FOUR of CLUBS
+
+Player 1 hand score: 24
+
+Player 1's lives: 1
+
+Player 2 hand: JACK of SPADES
+JACK of HEARTS
+ACE of HEARTS
+
+Player 2 hand score: 21
+
+Player 2's lives: 2
+
+New round start.
+
+Player 1 hand: QUEEN of DIAMONDS
+TEN of DIAMONDS
+FOUR of DIAMONDS
+
+Player 1 hand score: 24
+
+Player 1's lives: 1
+
+Player 2 hand: NINE of HEARTS
+NINE of DIAMONDS
+ACE of SPADES
+
+Player 2 hand score: 11
+
+Player 2's lives: 1
+
+New round start.
+
+Player 1 hand: QUEEN of CLUBS
+JACK of CLUBS
+NINE of CLUBS
+
+Player 1 hand score: 29
+
+Player 1's lives: 1
+The game has ended!

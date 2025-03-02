@@ -3,7 +3,6 @@ package edu.guilford;
 import java.util.*;
 
 public class Game {
-    private Random random = new Random();
     private List<Player> players;
     private Deck deck;
     private Stack<Card> discard;
