@@ -133,7 +133,7 @@ public class ThirtyOneDriver {
         while (players.size() > 1) {
             System.out.println("\nNew round start.");
 
-            // Initializeand  shuffle the deck
+            // Initialize and shuffle the deck
             Deck deck = game.getDeck();
             deck.clear();
             deck.build();
