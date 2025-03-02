@@ -136,6 +136,7 @@ public class Hand {
                     }
                 }
             }
+            // Check if the suit's value is greater than the current max value and update
             if (values[suit.ordinal()] > maxValue) {
                 maxValue = values[suit.ordinal()];
                 highestSuit = suit;

@@ -1,16 +1,14 @@
 package edu.guilford;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class ThirtyOneDriver {
     private static final int NUM_PLAYERS = 2; // Change this to change the number of players
     private static final int INITIAL_CARDS = 3;
-    private static final int KNOCK_SCORE = 20; // A player will knock if their hand is at least this score
+    private static final int KNOCK_SCORE = 24; // A player will knock if their hand is at least this score
 
-    private static void turn(Player player, Stack<Card> discard, Queue<Card> stockpile) {
+    private static void turn(Player player, Stack<Card> discard, Queue<Card> stockpile, Random random) {
+        /* Old basic code for a turn
         // The player puts the first card in their hand into the discard pile
         Card discardCard = player.getHand().getCard(0);
         player.getHand().removeCard(discardCard);
@@ -20,10 +18,71 @@ public class ThirtyOneDriver {
         if (!stockpile.isEmpty()) {
             Card drawnCard = stockpile.poll();
             player.getHand().addCard(drawnCard);
+        } */
+
+        // First determine which suit the player keeps (highest score)
+        Card.Suit targetSuit = player.getHand().getHighestSuit();
+
+        // Choose which card to remove, first choosing the first one not of the target suit
+        Card discardCard = null;
+        for (Card card : player.getHand().getHand()) { // Get Hand from player then get Card array from Hand
+            if (card.getSuit() != targetSuit) {
+                discardCard = card;
+                break;
+            }
         }
+        // If all cards are the same suit and the knock score is not met, discard the lowest value card
+        if (discardCard == null) {
+            discardCard = player.getHand().getCard(0); // Placeholder as null can't be compared to
+        }
+        for (Card card : player.getHand().getHand()) {
+            if (card.compareTo(discardCard) < 0) { // compareTo() will return negative if card rank is lower
+                discardCard = card;
+            }
+        }
+
+        // Remove the card from the hand and randomly either add it to the top of discard or bottom of stockpile
+        player.getHand().removeCard(discardCard);
+        if (random.nextBoolean()) {
+            discard.push(discardCard); // Add to top of discard pile
+        }
+        else {
+            stockpile.add(discardCard); // Add to bottom of stockpile
+        }
+
+        // If the top card of the discard pile is of the target suit, take it. Otherwise, draw from stockpile.
+        Card drawnCard;
+        if (!discard.isEmpty() && discard.peek().getSuit() == targetSuit) {
+            drawnCard = discard.pop();
+        }
+        else {
+            drawnCard = stockpile.poll();
+
+            // Refill the stockpile with the discard if it is empty, leaving one card
+            if (drawnCard == null) {
+                while (true) {
+                    Card temp = discard.pop();
+                    if (discard.peek() == null) { // If taking a card makes discard empty, restore it and stop
+                        discard.push(temp);
+                        drawnCard = stockpile.poll();
+                        break;
+                    }
+                    stockpile.add(temp);
+                }
+            }
+        }
+
+        // Add the drawn card to the player's deck
+        player.getHand().addCard(drawnCard);
+    }
+
+    private static void takeLives(Player players) {
+        
     }
 
     public static void main(String[] args) {
+        Random random = new Random();
+
         // Create a new game instance
         Game game = new Game();
 
@@ -62,7 +121,7 @@ public class ThirtyOneDriver {
 
         // Play the first round, no player can knock
         for (Player player : players) {
-            turn(player, discard, stockpile);
+            turn(player, discard, stockpile, random);
         }
 
         // Continue the game until a player knocks
@@ -77,14 +136,14 @@ public class ThirtyOneDriver {
                     break;
                 }
 
-                turn(player, discard, stockpile);
+                turn(player, discard, stockpile, random);
             }
         }
 
         // Once someone knocks, everyone else gets one more turn
         for (Player player : players) {
             if (player != knocker) {
-                turn(player, discard, stockpile);
+                turn(player, discard, stockpile, random);
             }
         }
         
