@@ -6,9 +6,22 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class ThirtyOneDriver {
-    private static final int NUM_PLAYERS = 2;
+    private static final int NUM_PLAYERS = 2; // Change this to change the number of players
     private static final int INITIAL_CARDS = 3;
-    private static final int KNOCK_SCORE = 20;
+    private static final int KNOCK_SCORE = 20; // A player will knock if their hand is at least this score
+
+    private static void turn(Player player, Stack<Card> discard, Queue<Card> stockpile) {
+        // The player puts the first card in their hand into the discard pile
+        Card discardCard = player.getHand().getCard(0);
+        player.getHand().removeCard(discardCard);
+        discard.push(discardCard);
+
+        // Then draws a card from the stockpile
+        if (!stockpile.isEmpty()) {
+            Card drawnCard = stockpile.poll();
+            player.getHand().addCard(drawnCard);
+        }
+    }
 
     public static void main(String[] args) {
         // Create a new game instance
@@ -49,16 +62,7 @@ public class ThirtyOneDriver {
 
         // Play the first round, no player can knock
         for (Player player : players) {
-            // The player puts the first card in their hand into the discard pile
-            Card discardCard = player.getHand().getCard(0);
-            player.getHand().removeCard(discardCard);
-            discard.push(discardCard);
-
-            // Then draws a card from the stockpile
-            if (!stockpile.isEmpty()) {
-                Card drawnCard = stockpile.poll();
-                player.getHand().addCard(drawnCard);
-            }
+            turn(player, discard, stockpile);
         }
 
         // Continue the game until a player knocks
@@ -73,31 +77,14 @@ public class ThirtyOneDriver {
                     break;
                 }
 
-                // Standard game loop: discard and draw
-                Card discardCard = player.getHand().getCard(0);
-                player.getHand().removeCard(discardCard);
-                discard.push(discardCard);
-
-                // Then draws a card from the stockpile
-                if (!stockpile.isEmpty()) {
-                    Card drawnCard = stockpile.poll();
-                    player.getHand().addCard(drawnCard);
-                }
+                turn(player, discard, stockpile);
             }
         }
 
         // Once someone knocks, everyone else gets one more turn
         for (Player player : players) {
             if (player != knocker) {
-                Card discardCard = player.getHand().getCard(0);
-                player.getHand().removeCard(discardCard);
-                discard.push(discardCard);
-
-                // Then draws a card from the stockpile
-                if (!stockpile.isEmpty()) {
-                    Card drawnCard = stockpile.poll();
-                    player.getHand().addCard(drawnCard);
-                }
+                turn(player, discard, stockpile);
             }
         }
         
